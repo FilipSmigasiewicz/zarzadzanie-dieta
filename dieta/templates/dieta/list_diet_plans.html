@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Planów Dietetycznych</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Lista Planów Dietetycznych</h1>
+        <ul class="list-group">
+            {% for plan in diet_plans %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ plan.name }}</span>
+                <div>
+                    <a href="{% url 'view_diet_plan' plan.id %}" class="btn btn-primary btn-sm mr-2">Wyświetl</a>
+                    <form method="post" action="{% url 'delete_diet_plan' plan.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'create_diet_plan' %}" class="btn btn-success mt-3">Utwórz nowy plan dietetyczny</a>
+        <br>
+        <a href="{% url 'list_meals' %}" class="btn btn-secondary mt-3">Zobacz wszystkie posiłki</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

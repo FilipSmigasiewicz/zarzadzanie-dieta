@@ -1,0 +1,6 @@
+django
+psycopg2
+gunicorn
+dj_database_url
+python-dotenv
+Pillow

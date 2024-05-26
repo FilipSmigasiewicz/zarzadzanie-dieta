@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Posiłków</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Lista Posiłków</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Zdjęcie</th>
+                    <th>Nazwa</th>
+                    <th>Kalorie</th>
+                    <th>Białko</th>
+                    <th>Węglowodany</th>
+                    <th>Tłuszcz</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for meal in meals %}
+                <tr>
+                    <td>
+                        {% if meal.image %}
+                        <img src="{{ meal.image.url }}" alt="{{ meal.name }}" width="100">
+                        {% else %}
+                        Brak obrazu
+                        {% endif %}
+                    </td>
+                    <td>{{ meal.name }}</td>
+                    <td>{{ meal.calories }}</td>
+                    <td>{{ meal.protein }}</td>
+                    <td>{{ meal.carbohydrates }}</td>
+                    <td>{{ meal.fat }}</td>
+                    <td>
+                        <a href="{% url 'edit_meal' meal.id %}" class="btn btn-warning btn-sm">Edytuj</a>
+                        <a href="{% url 'delete_meal' meal.id %}" class="btn btn-danger btn-sm">Usuń</a>
+                        <a href="{% url 'view_meal' meal.id %}" class="btn btn-primary btn-sm">Wyświetl</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'create_meal' %}" class="btn btn-success">Dodaj nowy posiłek</a>
+        <a href="{% url 'list_diet_plans' %}" class="btn btn-primary">Zobacz plany dietetyczne</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

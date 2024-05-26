@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ diet_plan.name }}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">{{ diet_plan.name }}</h1>
+        <div class="mb-3">
+            <h4>Posiłki</h4>
+            <p><strong>Śniadanie:</strong> <a href="{% url 'view_meal' diet_plan.breakfast.id %}">{{ diet_plan.breakfast.name }}</a></p>
+            <p><strong>Lunch:</strong> <a href="{% url 'view_meal' diet_plan.lunch.id %}">{{ diet_plan.lunch.name }}</a></p>
+            <p><strong>Kolacja:</strong> <a href="{% url 'view_meal' diet_plan.dinner.id %}">{{ diet_plan.dinner.name }}</a></p>
+        </div>
+        <div class="mb-3">
+            <h4>Podsumowanie Makroskładników</h4>
+            <p><strong>Kalorie:</strong> {{ total_calories }} kcal</p>
+            <p><strong>Białko:</strong> {{ total_protein }} g</p>
+            <p><strong>Węglowodany:</strong> {{ total_carbohydrates }} g</p>
+            <p><strong>Tłuszcz:</strong> {{ total_fat }} g</p>
+        </div>
+        <a href="{% url 'list_diet_plans' %}" class="btn btn-primary">Wróć do listy planów dietetycznych</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
